@@ -16,40 +16,28 @@ namespace AreaLib
             Triangle,
             Circle
         }
-        /// <summary>
-        /// Расчёт площади фигуры
-        /// </summary>
-        /// <param name="shape">Тип фигуры</param>
-        /// <param name="a">Сторона 1</param>
-        /// <param name="b">Сторона 2</param>
-        /// <param name="c">Сторона 3</param>
-        /// <param name="r">Радиус</param>
-        /// <returns>Площадь фигуры</returns>
-        /// <exception cref="NotImplementedException"></exception>
-        public static double GetArea (Shape shape, double a = 0, double b = 0, double c = 0, double r = 0)
+
+        private static double GetCircleArea(double radius)
+        {
+            IGetArea shape = new Circle (radius);
+            return shape.GetArea();
+        }
+        private static double GetTriangleArea(double side1, double side2, double side3)
+        {
+            IGetArea triangle = ATriangle.CreateTriangle(side1, side2, side3);
+            return triangle.GetArea();
+        }
+        
+        public static double GetAreaRunTime(Shape shape, double side1 = 0, double side2 = 0, double side3 = 0, double radius = 0)
         {
             switch (shape)
             {
                 case Shape.Triangle:
-                    Sort();
-                    if (Math.Pow(c, 2) == Math.Pow(a, 2) + Math.Pow(b, 2))
-                    {
-                        return (a*b)/2;
-                    }
-                    else {
-                        double p = (a + b + c) / 2;
-                        return Math.Sqrt(p * (p - a) * (p - b) * (p - c));
-                    }
+                    return GetTriangleArea(side1, side2, side3);
                 case Shape.Circle:
-                    return Math.Pow(r, 2) * 3.14d;
+                    return GetCircleArea(radius);
                 default:
                     throw new NotImplementedException();
-            }
-            void Sort()
-            {
-                double[] mas = {a, b, c};
-                Array.Sort(mas);
-                a = mas[0]; b = mas[1]; c = mas[2];
             }
         }
     }

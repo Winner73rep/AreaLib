@@ -16,7 +16,7 @@ namespace AreaLib.Tests
             double c = 15;
 
             // Act
-            double result = Area.GetArea(Area.Shape.Triangle, a, b, c);
+            double result = Area.GetAreaRunTime(Area.Shape.Triangle, a, b, c);
 
             // Assert
             Assert.Equal(84, result);
@@ -34,7 +34,7 @@ namespace AreaLib.Tests
             double c = 8;
 
             // Act
-            double result = Area.GetArea(Area.Shape.Triangle, a, b, c);
+            double result = Area.GetAreaRunTime(Area.Shape.Triangle, a, b, c);
 
             // Assert
             Assert.Equal(24, result);
@@ -49,7 +49,7 @@ namespace AreaLib.Tests
             double r = 5;
 
             // Act
-            double result = Area.GetArea(Area.Shape.Circle, r: r);
+            double result = Area.GetAreaRunTime(Area.Shape.Circle, radius: r);
 
             // Assert
             Assert.Equal(78.5d, result);
